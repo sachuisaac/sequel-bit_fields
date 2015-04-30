@@ -81,6 +81,8 @@ module Sequel::Plugins
             #argument is an integer
             elsif args.first.is_a?(Fixnum)
               self[bit_field_column] = args.first
+            elsif args.first.is_a?(String) && args.first.to_i.is_a?(Fixnum)
+              self[bit_field_column] = args.first.to_i
             else
               #set each bit_field presented in args to true, others to false
               bit_fields.each do |bit_field|
